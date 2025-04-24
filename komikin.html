@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eleceed - Komikidn</title>
+    <style>
+      :root {
+        --main-color: #007bff;
+        --second-color: #1e1e1e;
+        --text-color: white;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--second-color);
+        color: var(--text-color);
+      }
+      header {
+        background-color: var(--main-color);
+        padding: 15px;
+        text-align: left;
+        font-size: 24px;
+        font-weight: bold;
+      }
+      .areasearch {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .searchbox input {
+        padding: 5px 5px;
+        border-radius: 15px;
+        border: none;
+      }
+      .searchbox button {
+        padding: 5px 10px;
+        background-color: white;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+      }
+      .searchbox button:hover {
+        background: #a9b1b9;
+      }
+      .textheader {
+        display: flex;
+        flex-grow: 1;
+        gap: 20px;
+      }
+      .navigasi a {
+        color: white;
+        text-decoration: none;
+        margin-right: 15px;
+        font-size: 15px;
+        text-align: center;
+        line-height: 50px;
+        font-weight: 500;
+      }
+      .container {
+        max-width: 900px;
+        margin: auto;
+        padding: 20px;
+        background-color: #2b2b2b;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      }
+      .komik {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .Cover {
+        width: 250px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .Cover {
+        width: 250px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        opacity: 0;
+        animation: fadeIn 1.2s ease forwards;
+      }
+
+      .judul {
+        flex-grow: 1;
+      }
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+      .table td {
+        border: 1px solid #444;
+        padding: 8px;
+        color: var(--text-color);
+      }
+      .deskripsi {
+        margin-top: 15px;
+        font-size: 14px;
+        line-height: 1.6;
+        text-align: justify;
+        padding: 0 15px;
+      }
+      .bookmark {
+        display: block;
+        background-color: var(--main-color);
+        color: var(--text-color);
+        padding: 10px;
+        text-align: center;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+      .bookmark:hover {
+        background: #014996;
+      }
+      .rating {
+        margin-top: 10px;
+        color: gold;
+        font-size: 20px;
+        text-align: center;
+      }
+      .genres {
+        margin-top: 10px;
+      }
+      .genre-tag {
+        display: inline-block;
+        background-color: #555;
+        color: var(--text-color);
+        padding: 5px 10px;
+        margin: 5px;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      .genre-tag:hover {
+        background: #3e3e3e;
+      }
+      #Search {
+        width: 97%;
+        padding: 12px;
+        border-radius: 5px;
+        border: none;
+        background-color: #222222;
+        color: var(--text-color);
+        font-size: 14px;
+        margin-bottom: 10px;
+        text-align: left;
+      }
+      #daftar-chapter {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        background-color: var(--second-color);
+        border-radius: 10px;
+        max-height: 300px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #555 var(--second-color);
+      }
+      #daftar-chapter li {
+        background-color: #3a3a3a;
+        padding: 12px 20px;
+        margin: 5px 10px;
+        border-radius: 8px;
+        color: var(--text-color);
+        font-size: 16px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: background 0.3s, transform 0.2s;
+        cursor: pointer;
+      }
+      #daftar-chapter li:hover {
+        background-color: var(--main-color);
+        transform: translateX(5px);
+      }
+      .komentar {
+        margin-top: 20px;
+      }
+      .komentar textarea {
+        width: 95%;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        resize: none;
+      }
+      .komentar button {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: var(--main-color);
+        color: var(--text-color);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 80px;
+      }
+
+      .komentar button:hover {
+        background: rgb(4, 76, 176);
+      }
+
+      footer {
+        text-align: center;
+        padding: 10px;
+        background-color: #333;
+        margin-top: 20px;
+        color: var(--text-color);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="areasearch">
+        <div class="textheader">
+          <img src="Logo.png" width="195" height="50" alt="Logo" />
+          <nav class="navigasi">
+            <a href="#">Beranda</a>
+            <a href="#">Genre</a>
+            <a href="#">Bookmark</a>
+          </nav>
+        </div>
+        <form class="searchbox">
+          <input type="text" placeholder="Cari komik..." />
+          <button type="submit">🔍</button>
+        </form>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="komik">
+        <img src="Eleceed.jpg" alt="Cover Komik" class="Cover" />
+        <div class="judul">
+          <h2>Eleceed</h2>
+          <table class="table">
+            <tr>
+              <td>Alternative</td>
+              <td>일렉시드</td>
+            </tr>
+            <tr>
+              <td>Status</td>
+              <td>Ongoing</td>
+            </tr>
+            <tr>
+              <td>Type</td>
+              <td>Manhwa</td>
+            </tr>
+            <tr>
+              <td>Released</td>
+              <td>2018</td>
+            </tr>
+            <tr>
+              <td>Author</td>
+              <td>Jae Ho, Son</td>
+            </tr>
+            <tr>
+              <td>Posted By</td>
+              <td>Komikidn</td>
+            </tr>
+            <tr>
+              <td>Posted On</td>
+              <td>Februari 10, 2022</td>
+            </tr>
+            <tr>
+              <td>Updated On</td>
+              <td>Maret 18, 2025</td>
+            </tr>
+          </table>
+          <a href="#" class="bookmark">🔖 Bookmark</a>
+        </div>
+      </div>
+      <div class="rating">⭐ 8.34</div>
+      <p class="deskripsi">
+        <span>Sinopsis:</span> Eleceed adalah manhwa aksi dan supernatural yang
+        mengikuti petualangan Jiwoo, seorang remaja baik hati dengan refleks
+        luar biasa, dan Kaiden, seorang pengguna kemampuan kuat yang terjebak
+        dalam tubuh kucing. Setelah menyelamatkan Kaiden yang terluka, Jiwoo
+        tanpa sadar terlibat dalam dunia tersembunyi yang dipenuhi pengguna
+        kemampuan dengan kekuatan luar biasa. Bersama-sama, mereka menghadapi
+        berbagai ancaman, menjalin persahabatan dengan sekutu baru, dan
+        mengungkap konspirasi besar yang melibatkan organisasi kuat di dunia
+        para pengguna kemampuan. Dengan perpaduan aksi menegangkan, humor, dan
+        ikatan emosional yang kuat, Eleceed menawarkan kisah seru tentang
+        pertumbuhan, persahabatan, dan kekuatan yang datang dari kebaikan hati.
+      </p>
+
+      <div class="genres">
+        <span class="genre-tag">Action</span>
+        <span class="genre-tag">Fantasy</span>
+        <span class="genre-tag">Supernatural</span>
+      </div>
+
+      <h2>Daftar Chapter</h2>
+      <form>
+        <label for="Search"></label>
+        <input type="text" id="Search" placeholder="Cari Chapter, Contoh 335" />
+      </form>
+      <ul id="daftar-chapter">
+        <li>Chapter 342</li>
+        <li>Chapter 341</li>
+        <li>Chapter 340</li>
+        <li>Chapter 339</li>
+        <li>Chapter 338</li>
+        <li>Chapter 337</li>
+        <li>Chapter 336</li>
+        <li>Chapter 335</li>
+        <li>Chapter 334</li>
+        <li>Chapter 333</li>
+        <li>Chapter 332</li>
+        <li>Chapter 331</li>
+        <li>Chapter 330</li>
+        <li>Chapter 329</li>
+        <li>Chapter 328</li>
+        <li>Chapter 327</li>
+        <li>Chapter 326</li>
+      </ul>
+
+      <div class="komentar">
+        <h3>Kolom Komentar</h3>
+        <textarea rows="4" placeholder="Tulis komentar Anda..."></textarea>
+        <button>Kirim</button>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Muhammad Syukran Husain, Irgi Ahmad Saputra</p>
+    </footer>
+  </body>
+</html>
